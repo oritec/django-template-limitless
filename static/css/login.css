@@ -1,0 +1,18 @@
+.login-container{
+@font-face
+font-family: "calibri(Cuerpo)";
+
+    background: url('/static/img/fondos/2.jpg') no-repeat;
+        background-size: auto auto;
+    background-size: cover;
+
+}
+.logo{
+width:200px;
+margin-bottom:50px;
+
+}
+.login-form {
+    top:100px;
+   background: rgba(255,255,255,0.6);
+}

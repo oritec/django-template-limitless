@@ -25,7 +25,7 @@ from usuarios.form import LoginForm
 # ========== Login ==========
 def ingresar(request, homepage):
     logger.debug(homepage)
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         return HttpResponseRedirect(reverse(homepage))
     
     form = LoginForm(request.POST or None)
@@ -36,9 +36,8 @@ def ingresar(request, homepage):
             login(request, user)
             return HttpResponseRedirect(reverse(homepage))
     
-    return render_to_response('usuarios/login.html',
-          {'form': form},
-           context_instance=RequestContext(request))
+    return render(request, 'usuarios/login.html',
+          {'form': form})
 
 # ========== Logout ==========
 def salir(request):
