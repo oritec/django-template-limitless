@@ -1,0 +1,41 @@
+{% load staticfiles %}
+{% load sekizai_tags %}
+
+{% addtoblock 'widget-css' %}
+    <style>
+        .navbar-brand > img {
+            /* margin-top: 2px; */
+            height: 28px;
+        }
+        .navbar-brand {
+            padding: 7px 20px;
+        }
+    </style>
+{% endaddtoblock %}
+<div class="navbar navbar-inverse">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="index.html"><img src="{% static 'img/logo.png' %}" alt="" ></a>
+
+        <ul class="nav navbar-nav pull-right visible-xs-block">
+            <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+        </ul>
+    </div>
+
+    <div class="navbar-collapse collapse" id="navbar-mobile">
+
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown dropdown-user">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    <img src="{% static  'img/user-white.png' %}" alt="">
+                    <span>{% if request.user.isautenticated %} {{ request.user }} {% else %} Oritec {% endif %}</span>
+                    <i class="caret"></i>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#"><i class="icon-cog5"></i> Perfil </a></li>
+                    <li><a href="#"><i class="icon-switch2"></i> Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
