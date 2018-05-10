@@ -13,13 +13,17 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
+from django.urls import include, path
 from django.contrib import admin
 from usuarios.views import ingresar, salir
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^', include('vista.urls', namespace='vista')),
-    url(r'^login/$', ingresar, {'homepage':'vista:index'}, name='ingresar'),
-    url(r'^logout/$', salir, name='salir'),
+    #url(r'^admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
+    #url(r'^', include('vista.urls', namespace='vista')),
+    path('', include('vista.urls')),
+    #url(r'^login/$', ingresar, {'homepage':'vista:index'}, name='ingresar'),
+    path('login/', ingresar, {'homepage':'vista:index'}, name='ingresar'),
+    #url(r'^logout/$', salir, name='salir'),
+    path('logout/', salir, name='salir'),
 ]
