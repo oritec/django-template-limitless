@@ -65,6 +65,7 @@
         <!-- /formato  fechas y horas -->
         <script src="{% static 'assets/js/plugins/ui/moment/moment.min.js' %}" type="text/javascript"></script>
         <script src="{% static 'js/vendor/moment.js' %}" type="text/javascript"></script>
+        <script src="{% static 'assets/js/plugins/notifications/pnotify.min.js' %}" type="text/javascript"></script>
 
         {% block javascript_include %}
 
@@ -82,10 +83,30 @@
 
         <script>
 	        jQuery(document).ready(function() {
+                {% for id in cont.menu %}
+                    {% if forloop.first %}
+                        $('.active.open.start').removeClass("active");
+                        $('#{{ id }}').addClass("active");
+                        //console.log('{{ id }}')
+                    {% else %}
+                        $('#{{ id }}').addClass("active");
+                        //console.log('{{ id }}')
+                    {% endif %}
+                {% endfor %}
 
                 {% block jquery %}
                 {% endblock %}
                 {% render_block "widget-jquery" %}
+                {% if messages %}
+                    {% for message in messages %}
+                        //toastr["{{ message.tags }}"]("{{ message }}");
+                        new PNotify({
+                            //title: '{{ message }}',
+                            text: '{{ message }}',
+                            addclass: 'bg-{{ message.tags }}'
+                        });
+                    {% endfor %}
+                {% endif %}
 	        });
         </script>
     </body>
