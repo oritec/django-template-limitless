@@ -25,7 +25,8 @@ SECRET_KEY = '{{ secret_key }}'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Restringir en produccion
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -81,7 +82,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    },
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'OPTIONS': {
+    #         'read_default_file': os.path.join(BASE_DIR, 'db.conf'),
+    #     },
+    # },
 }
 
 
@@ -127,8 +134,8 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(BASE_DIR,'static'),
-    #os.path.join(BASE_DIR,'media'),
+    os.path.join(BASE_DIR, 'static'),
+    # os.path.join(BASE_DIR,'media'),
 )
 
 STATICFILES_FINDERS = (
@@ -145,11 +152,11 @@ LOGGING = {
         },
         'verbose': {
             'format': '[%(asctime)s] %(levelname)s %(message)s',
-            'datefmt' : "%d/%b/%Y %H:%M"
+            'datefmt': "%d/%b/%Y %H:%M"
         },
     },
     'handlers': {
-        'console':{
+        'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
             'formatter': 'simple'
@@ -158,13 +165,13 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
             'filename': BASE_DIR+'/app.log',
-            'formatter':'verbose'
+            'formatter': 'verbose'
         },
         'file_scripts': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
             'filename': BASE_DIR+'/app-scripts.log',
-            'formatter':'verbose'
+            'formatter': 'verbose'
         },
     },
     'loggers': {

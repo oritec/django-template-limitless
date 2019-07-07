@@ -11,13 +11,14 @@ import logging
 
 logger = logging.getLogger('oritec')
 
+
 class LoginForm(Form):
     username = forms.CharField(widget=TextInput(attrs={'class': 'form-control placeholder-no-fix"'}))
-    password = forms.CharField(widget=PasswordInput(attrs={'class': 'form-control placeholder-no-fix"'}),required=True)
-    
+    password = forms.CharField(widget=PasswordInput(attrs={'class': 'form-control placeholder-no-fix"'}),
+                               required=True)
+
     def clean(self):
         cleaned_data = super(LoginForm, self).clean()
-        
         username = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
         user = authenticate(username=username, password=password)
